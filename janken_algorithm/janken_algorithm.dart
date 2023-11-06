@@ -3,19 +3,38 @@ import 'dart:math' as math;
 
 void main(List<String> arguments) {
   int yh = math.Random().nextInt(3);
+  final List<String> hands = ["グー", "チョキ", "パー"];
 
-  print("じゃんけんの手を入力してください（グーなら１、チョキなら２、パーなら３のキーボード)");
+  print("じゃんけんの手を入力してください");
   String input = stdin.readLineSync() ?? '';
-  int mh = int.parse(input);
+  int mh;
+  if (input == 'グー') {
+    mh = 0;
+  } else if (input == 'チョキ') {
+    mh = 1;
+  } else if (input == 'パー') {
+    mh = 2;
+  } else {
+    mh = -1;
+  }
 
-  if(mh == yh) {
+
+
+
+  if (mh == yh) {
+    print('相手:${hands[yh]}');
     print("あいこ");
-  }else if((mh == 1&& yh == 2)||(mh == 2 && yh == 3)||(mh == 3 && yh == 1)) {
+  } else
+  if ((mh == 1 && yh == 2) || (mh == 2 && yh == 3) || (mh == 3 && yh == 1)) {
+    print('相手:${hands[yh]}');
     print("勝ち");
-  }else {
+  } else {
+    print('相手:${hands[yh]}');
     print("負け");
   }
 }
+
+
 
 
 
