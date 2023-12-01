@@ -25,7 +25,7 @@ void main(List<String> arguments) {
     print('相手:${hands[yh]}');
     print("あいこ");
   } else
-  if ((mh == 1 && yh == 2) || (mh == 2 && yh == 3) || (mh == 3 && yh == 1)) {
+  if ((mh == 0 && yh == 1) || (mh == 1 && yh == 2) || (mh == 2 && yh == 0)) {
     print('相手:${hands[yh]}');
     print("勝ち");
   } else {

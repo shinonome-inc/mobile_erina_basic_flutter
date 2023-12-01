@@ -1,16 +1,46 @@
-# janken_app
 
-A new Flutter project.
+import 'dart:io';
+import 'dart:math' as math;
 
-## Getting Started
+void main(List<String> arguments) {
+    janken();
+}
 
-This project is a starting point for a Flutter application.
+void janken()
+{
+    print("じゃんけんの手を入力してください");
+    String input = stdin.readLineSync() ?? '';
+    int ans = stringToInt(input);
+    hantei(ans);
+}
 
-A few resources to get you started if this is your first Flutter project:
+int stringToInt(String input) {
+    int mh;
+    if (input == 'グー') {
+    mh = 0;
+   } else if (input == 'チョキ') {
+    mh = 1;
+   } else if (input == 'パー') {
+    mh = 2;
+   } else {
+    mh = -1;
+   }
+    return mh;
+}
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+void hantei(int mh) {
+    int yh = math.Random().nextInt(3);
+    final List<String> hands = ["グー", "チョキ", "パー"];
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    if (mh == yh) {
+        print('相手:${hands[yh]}');
+        print("あいこ");
+    } else
+    if ((mh == 0 && yh == 1) || (mh == 1 && yh == 2) || (mh == 2 && yh == 0)) {
+        print('相手:${hands[yh]}');
+        print("勝ち");
+    } else {
+        print('相手:${hands[yh]}');
+        print("負け");
+    }
+}
