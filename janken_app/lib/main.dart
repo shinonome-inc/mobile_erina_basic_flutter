@@ -7,6 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -28,7 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   String myHand = '✊';
   String yourHands = '✊';
   String result = '';
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  void yourHand(){
+  void yourHand() {
     final randomNumber = Random().nextInt(3);
     // 生成されたランダムな数字を ✊, ✌️, 🖐 に変換して、コンピューターの手に代入します。
     yourHands = randomNumberToHand(randomNumber);
@@ -64,11 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void judge() {
     if (myHand == yourHands) {
       result = '引き分け';
-    } else if (
-        (myHand == '✊' && yourHands == '✌️') ||
+    } else if ((myHand == '✊' && yourHands == '✌️') ||
         (myHand == '✌️' && yourHands == '🖐️') ||
-        (myHand == '🖐️' && yourHands == '✊')
-    ) {
+        (myHand == '🖐️' && yourHands == '✊')) {
       result = '勝ち';
     } else {
       result = '負け';
@@ -79,68 +78,77 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('じゃんけん'),
+        title: const Text('じゃんけん'),
       ),
-
       body: Center(
         //ボタン
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:[
+          children: [
             Text(
               result,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 32,
               ),
             ),
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
             Text(
               yourHands,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 32,
               ),
             ),
             // 余白を追加
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
             Text(
               myHand,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 32,
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(110, 100), // ボタンの幅と高さを指定
-              ),
-              onPressed: (){
-                selectHand('✊');
-              },
-              child: Text('✊'),
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(110, 100), // ボタンの幅と高さを指定
+                  ),
+                  onPressed: () {
+                    selectHand('✊');
+                  },
+                  child: const Text(
+                      '✊',
+                      style: TextStyle(fontSize: 32),
+                  ),
+                ),
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(110, 100), // ボタンの幅と高さを指定
+                  ),
+                  onPressed: () {
+                    selectHand('✌️');
+                  },
+                  child: const Text(
+                      '✌️',
+                      style: TextStyle(fontSize: 32),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(110, 100), // ボタンの幅と高さを指定
+                  ),
+                  onPressed: () {
+                    selectHand('🖐️');
+                  },
+                  child: const Text(
+                      '🖐️',
+                      style: TextStyle(fontSize: 32),
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(110, 100), // ボタンの幅と高さを指定
-              ),
-              onPressed: (){
-                selectHand('✌️');
-              },
-              child: Text('✌️'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(110, 100), // ボタンの幅と高さを指定
-              ),
-              onPressed: (){
-                selectHand('🖐️');
-              },
-              child: Text('🖐️'),
-            ),
-           ],
-          ),
-         ],
+          ],
         ),
       ),
     );
