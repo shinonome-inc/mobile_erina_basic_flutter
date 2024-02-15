@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void selectHand(String selectedHand) {
     myHand = selectedHand; // myHand に 引数として受けとった selectedHand を代入します。
-    print(myHand);
+    debugPrint(myHand);
     yourHand(); // コンピューターの手を決める。
     judge();
     setState(() {});
