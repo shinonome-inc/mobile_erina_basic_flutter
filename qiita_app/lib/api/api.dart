@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -38,14 +39,14 @@ void main() async {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body) as List<dynamic>;
-      data.forEach((item) {
-        print(item);
-      });
+      for (var item in data) {
+        stdout.writeln(item);
+      }
     } else {
-      print(
+      stderr.writeln(
           'Failed to fetch data from the API. Status code: ${response.statusCode}');
     }
   } catch (e) {
-    print('Failed to fetch data: $e');
+    stderr.writeln('Failed to fetch data: $e');
   }
 }
