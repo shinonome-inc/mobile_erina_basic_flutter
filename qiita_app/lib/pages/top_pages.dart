@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qiita_app/constants/app_colors.dart';
 
 class TopPage extends StatelessWidget {
-  const TopPage({Key? key}) : super(key: key);
+  const TopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
