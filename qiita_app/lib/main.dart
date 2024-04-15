@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qiita_app/pages/top_pages.dart'; // top_pages.dart ファイルをインポート
+import 'package:qiita_app/src/pages/top_pages.dart'; // top_pages.dart ファイルをインポート
 
 void main() {
   runApp(const MyApp());
