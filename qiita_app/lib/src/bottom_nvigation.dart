@@ -25,7 +25,7 @@ class BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: <Widget>[
           Expanded(child: pageList[selectedIndex]),
         ],
@@ -43,7 +43,7 @@ class BottomNavigationState extends State<BottomNavigation> {
           //文字のサイズ
           unselectedFontSize: 10,
           //選択されていないときの文字
-          selectedItemColor: AppColors.icon,
+          selectedItemColor: AppColors.lightgreen,
           iconSize: 24,
           items: const [
             BottomNavigationBarItem(
