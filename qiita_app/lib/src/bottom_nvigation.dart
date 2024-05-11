@@ -16,7 +16,7 @@ class BottomNavigation extends StatefulWidget {
 class BottomNavigationState extends State<BottomNavigation> {
   int selectedIndex = 0;
   final List<Widget> pageList = [
-    FeedPage(),
+    const FeedPage(),
     const Tag(),
     const MyPage(),
     const Setting()
