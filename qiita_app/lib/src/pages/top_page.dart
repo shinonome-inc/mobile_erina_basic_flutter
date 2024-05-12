@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qiita_app/constants/app_colors.dart';
+import 'package:qiita_app/src/bottom_nvigation.dart';
+import 'package:qiita_app/src/constants/app_colors.dart';
 
 class TopPage extends StatelessWidget {
-  const TopPage({Key? key}) : super(key: key);
+  const TopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class TopPage extends StatelessWidget {
         children: [
           _buildBackground(),
           _buildOverlay(),
-          _buildContent(),
+          _buildContent(context),
         ],
       ),
     );
@@ -36,7 +37,7 @@ class TopPage extends StatelessWidget {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24.0),
       width: double.infinity,
@@ -64,7 +65,7 @@ class TopPage extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          _buildLoginButton(),
+          _buildLoginButton(context),
           const SizedBox(
             height: 16,
           ),
@@ -77,13 +78,16 @@ class TopPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginButton() {
+  Widget _buildLoginButton(BuildContext context) {
     return SizedBox(
       height: 50,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // ログインボタンが押された時の処理
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BottomNavigation()),
+          ); // ログインボタンが押された時の処理
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.green,
