@@ -33,7 +33,7 @@ class QiitaRepository {
 
       if (response.statusCode == 200) {
         final List<dynamic> jsonResponse = jsonDecode(response.body);
-        print(jsonResponse
+        debugPrint(jsonResponse
             .map((data) => Article.fromJson(data))
             .toList()
             .first
