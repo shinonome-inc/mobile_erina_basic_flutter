@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qiita_app/src/constants/app_colors.dart';
-import 'package:qiita_app/src/pages/feed.dart';
+import 'package:qiita_app/src/pages/feedpage/feed.dart';
 import 'package:qiita_app/src/pages/mypage.dart';
 import 'package:qiita_app/src/pages/setting.dart';
 import 'package:qiita_app/src/pages/tag.dart';
