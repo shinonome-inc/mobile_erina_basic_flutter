@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qiita_app/src/constants/app_colors.dart';
-import 'package:qiita_app/src/pages/feedpage/feed.dart';
+import 'package:qiita_app/src/pages/feed.dart';
 import 'package:qiita_app/src/pages/mypage.dart';
 import 'package:qiita_app/src/pages/setting.dart';
 import 'package:qiita_app/src/pages/tag.dart';
@@ -16,7 +16,7 @@ class BottomNavigation extends StatefulWidget {
 class BottomNavigationState extends State<BottomNavigation> {
   int selectedIndex = 0;
   final List<Widget> pageList = [
-    const Feed(),
+    const FeedPage(),
     const Tag(),
     const MyPage(),
     const Setting()
@@ -25,11 +25,7 @@ class BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Expanded(child: pageList[selectedIndex]),
-        ],
-      ),
+      body: pageList[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           border: Border(
