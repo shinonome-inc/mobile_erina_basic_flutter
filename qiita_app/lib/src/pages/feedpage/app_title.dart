@@ -26,7 +26,6 @@ class AppTitle extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final Color dividerColor = Theme.of(context).dividerColor;
     return SafeArea(
-      // SafeArea を追加
       child: Container(
         height: 114,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -41,12 +40,12 @@ class AppTitle extends StatelessWidget implements PreferredSizeWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 11),
+            const SizedBox(height: 12),
             Text(
               title,
               style: style ?? AppTextStyles.apptitle,
             ),
-            const SizedBox(height: 19),
+            const SizedBox(height: 20),
             if (showSearchBar) const SearchBarWithIcon(),
             if (showBottomDivider) SizedBox(height: dividerHeight),
           ],
