@@ -1,4 +1,8 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:qiita_app/src/pages/feedpage/modal_bottom_sheet.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../constants/app_colors.dart';
 import '../../constants/app_text_style.dart';
@@ -15,59 +19,83 @@ class ArticleContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), //余白
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(article.userIconUrl),
-                radius: 19,
+    return GestureDetector(
+      onTap: () {
+        final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers = {
+          Factory(() => EagerGestureRecognizer())
+        };
+
+        UniqueKey key = UniqueKey();
+
+        showAppBottomModalSheet(
+          context,
+          title: "Article",
+          content: WebViewWidget(
+            gestureRecognizers: gestureRecognizers,
+            key: key,
+            controller: WebViewController()
+              ..loadRequest(
+                Uri.parse(article.url),
               ),
-              const SizedBox(width: 8),
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            //余白
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(article.userIconUrl),
+                  radius: 19,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        article.title,
+                        style: AppTextStyles.h2BasicBlack,
+                        maxLines: 2, //テキストの表示行数を制限
+                        overflow:
+                            TextOverflow.ellipsis, //溢れたテキストを省略記号（…）で表示します。
+                      ),
+                      Text(
+                        '@${article.userName} '
+                        '投稿日: ${article.postedDate} '
+                        'いいね: ${article.likesCount}',
+                        style: AppTextStyles.h3BasicSecondary,
+                        maxLines: 1, //テキストの表示行数を制限
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      article.title,
-                      style: AppTextStyles.h2BasicBlack,
-                      maxLines: 2, //テキストの表示行数を制限
-                      overflow: TextOverflow.ellipsis, //溢れたテキストを省略記号（…）で表示します。
-                    ),
-                    Text(
-                      '@${article.userName} '
-                      '投稿日: ${article.postedDate} '
-                      'いいね: ${article.likesCount}',
-                      style: AppTextStyles.h3BasicSecondary,
-                      maxLines: 1, //テキストの表示行数を制限
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      left: 16 +
+                          19 * 2 +
+                          8), // CircleAvatarの直径と左のPadding、そして間のスペースを加算
+                  child: const Divider(
+                    thickness: 0.5,
+                    color: AppColors.secondary,
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                    left: 16 +
-                        19 * 2 +
-                        8), // CircleAvatarの直径と左のPadding、そして間のスペースを加算
-                child: const Divider(
-                  thickness: 0.5,
-                  color: AppColors.secondary,
-                ),
-              ),
-            ),
-          ],
-        )
-      ],
+        ],
+      ),
     );
   }
 }

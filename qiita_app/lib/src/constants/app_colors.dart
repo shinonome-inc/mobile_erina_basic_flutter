@@ -9,4 +9,5 @@ class AppColors {
   static const Color secondary = Color.fromRGBO(130, 130, 130, 1);
   static const Color gray = Color.fromRGBO(118, 118, 128, 0.12);
   static const Color divider = Color(0xFFE0E0E0);
+  static const Color lightGray = Color.fromRGBO(118, 118, 128, 0.12);
 }

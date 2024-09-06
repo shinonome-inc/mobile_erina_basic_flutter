@@ -25,11 +25,7 @@ class BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Expanded(child: pageList[selectedIndex]),
-        ],
-      ),
+      body: pageList[selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           border: Border(
